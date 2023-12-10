@@ -89,4 +89,27 @@ public class KeepsRepository
     string sql = "DELETE FROM keeps WHERE id = @keepId LIMIT 1;";
     _db.Execute(sql, new { keepId });
   }
+
+  internal List<KeepInVault> GetKeepsByVaultId(int vaultId)
+  {
+    string sql = @"
+    SELECT
+    k.*,
+    vk.*,
+    acc.*
+    FROM keeps k
+    JOIN vaultKeeps vk ON vk.keepId = k.id
+    JOIN accounts acc ON acc.id = k.creatorId
+    WHERE vk.vaultId = @vaultId
+    ";
+
+    List<KeepInVault> keeps = _db.Query<KeepInVault, VaultKeep, Profile, KeepInVault>(sql, (keepInVault, vaultKeep, profile) =>
+    {
+      keepInVault.Creator = profile;
+      keepInVault.VaultKeepId = vaultKeep.Id;
+      return keepInVault;
+    }, new { vaultId }).ToList();
+
+    return keeps;
+  }
 }

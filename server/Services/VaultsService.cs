@@ -16,14 +16,14 @@ public class VaultsService
   }
 
 
-  internal Vault GetVaultById(int vaultId)
+  internal Vault GetVaultById(int vaultId, string userId)
   {
     Vault vault = _vaultsRepo.GetVaultById(vaultId);
     if (vault == null)
     {
       throw new Exception($"Vault with id: {vaultId} does not exist.");
     }
-    if (vault.IsPrivate == true)
+    if (vault.IsPrivate == true && vault.CreatorId != userId)
     {
       throw new Exception("ACCESS DENIED. This is a private vault.");
     }
@@ -32,7 +32,7 @@ public class VaultsService
 
   internal Vault EditVault(int vaultId, Vault vaultData, string userId)
   {
-    Vault vaultToUpdate = GetVaultById(vaultId);
+    Vault vaultToUpdate = GetVaultById(vaultId, userId);
     if (vaultToUpdate.CreatorId != userId)
     {
       throw new Exception($"Vault with id: {vaultId} is not yours to edit.");
@@ -47,7 +47,7 @@ public class VaultsService
 
   internal string DeleteVault(int vaultId, string userId)
   {
-    Vault vault = GetVaultById(vaultId);
+    Vault vault = GetVaultById(vaultId, userId);
     if (vault.CreatorId != userId)
     {
       throw new Exception($"Vault with id: {vaultId} is not yours to delete.");
