@@ -56,4 +56,10 @@ public class VaultsService
     _vaultsRepo.DeleteVault(vaultId);
     return $"Vault id: {vaultId} name: {vault.Name} has been deleted.";
   }
+
+  internal List<Vault> GetVaultsByProfileId(string profileId)
+  {
+    List<Vault> vaults = _vaultsRepo.GetVaultsByProfileId(profileId);
+    return vaults;
+  }
 }

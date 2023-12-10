@@ -1,7 +1,3 @@
-
-
-
-
 namespace keepr.Services;
 
 public class KeepsService
@@ -74,6 +70,12 @@ public class KeepsService
     }
 
     List<KeepInVault> keeps = _keepsRepo.GetKeepsByVaultId(vaultId);
+    return keeps;
+  }
+
+  internal List<Keep> GetKeepsByProfileId(string profileId)
+  {
+    List<Keep> keeps = _keepsRepo.GetKeepsByProfileId(profileId);
     return keeps;
   }
 }
