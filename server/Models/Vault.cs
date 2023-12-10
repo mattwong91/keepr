@@ -1,8 +1,7 @@
 namespace keepr.Models;
 
-public class Vault
+public class Vault : RepoItem<int>
 {
-  public int Id { get; set; }
   public string CreatorId { get; set; }
   public string Name { get; set; }
   public string Description { get; set; }
