@@ -86,6 +86,15 @@ public class VaultsRepository
     return vaults;
   }
 
+  internal List<Vault> GetMyVaults(string userId)
+  {
+    string sql = "SELECT * FROM vaults WHERE creatorId = @userId;";
+
+    List<Vault> vaults = _db.Query<Vault>(sql, new { userId }).ToList();
+
+    return vaults;
+  }
+
   private Vault PopulateCreator(Vault vault, Profile profile)
   {
     vault.Creator = profile;
