@@ -1,22 +1,39 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 card align-items-center shadow rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo"
-        class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
-    </div>
+  <h1>HOME PAGE</h1>
+  <div class="container-fluid">
+    <section class="row m-2">
+      <div v-for="keep in keeps" :key="keep.id" class="col-6 col-md-4 col-lg-3">
+        <KeepCard :keep="keep" />
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
+import { computed, onMounted } from "vue";
+import Pop from "../utils/Pop";
+import { keepsService } from "../services/KeepsService";
+import { AppState } from "../AppState";
+import KeepCard from "../components/KeepCard.vue";
+
 export default {
   setup() {
-    return {
-      
+    onMounted(() => {
+      getAllKeeps();
+    });
+    async function getAllKeeps() {
+      try {
+        await keepsService.getAllKeeps();
+      }
+      catch (error) {
+        Pop.error(error);
+      }
     }
-  }
+    return {
+      keeps: computed(() => AppState.keeps)
+    };
+  },
+  components: { KeepCard }
 }
 </script>
 
