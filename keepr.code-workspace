@@ -38,6 +38,26 @@
     "editor.codeActionsOnSave": {
       "source.fixAll": "explicit"
     },
-    "FSharp.suggestGitignore": false
+    "FSharp.suggestGitignore": false,
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#226566",
+      "activityBar.background": "#226566",
+      "activityBar.foreground": "#e7e7e7",
+      "activityBar.inactiveForeground": "#e7e7e799",
+      "activityBarBadge.background": "#481847",
+      "activityBarBadge.foreground": "#e7e7e7",
+      "commandCenter.border": "#e7e7e799",
+      "sash.hoverBorder": "#226566",
+      "statusBar.background": "#153f40",
+      "statusBar.foreground": "#e7e7e7",
+      "statusBarItem.hoverBackground": "#226566",
+      "statusBarItem.remoteBackground": "#153f40",
+      "statusBarItem.remoteForeground": "#e7e7e7",
+      "titleBar.activeBackground": "#153f40",
+      "titleBar.activeForeground": "#e7e7e7",
+      "titleBar.inactiveBackground": "#153f4099",
+      "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#153f40"
   }
 }
