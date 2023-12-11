@@ -33,6 +33,14 @@ public class KeepsService
     return keep;
   }
 
+  internal Keep GetKeepByIdAndIncrementViews(int keepId)
+  {
+    Keep keep = _keepsRepo.GetKeepById(keepId);
+    keep.Views++;
+    _keepsRepo.EditKeep(keep);
+    return keep;
+  }
+
   internal Keep EditKeep(int keepId, string userId, Keep keepData)
   {
     Keep keepToUpdate = GetKeepById(keepId);
@@ -46,6 +54,18 @@ public class KeepsService
 
     Keep keep = _keepsRepo.EditKeep(keepToUpdate);
     return keep;
+  }
+
+  internal void IncrementKeptCount(Keep keepToUpdate)
+  {
+    keepToUpdate.Kept++;
+    _keepsRepo.EditKeptCount(keepToUpdate);
+  }
+
+  internal void DecrementKeptCount(Keep keepToUpdate)
+  {
+    keepToUpdate.Kept--;
+    _keepsRepo.EditKeptCount(keepToUpdate);
   }
 
   internal string DeleteKeep(int keepId, string userId)

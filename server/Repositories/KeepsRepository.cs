@@ -78,10 +78,15 @@ public class KeepsRepository
     return keep;
   }
 
-  private Keep PopulateCreator(Keep keep, Profile profile)
+  internal void EditKeptCount(Keep keepToUpdate)
   {
-    keep.Creator = profile;
-    return keep;
+    string sql = @"
+    UPDATE keeps
+    SET
+    kept = @Kept
+    WHERE id = @Id LIMIT 1;";
+
+    _db.Execute(sql, keepToUpdate);
   }
 
   internal void DeleteKeep(int keepId)
@@ -126,4 +131,11 @@ public class KeepsRepository
     List<Keep> keeps = _db.Query<Keep, Profile, Keep>(sql, PopulateCreator, new { profileId }).ToList();
     return keeps;
   }
+
+  private Keep PopulateCreator(Keep keep, Profile profile)
+  {
+    keep.Creator = profile;
+    return keep;
+  }
+
 }
