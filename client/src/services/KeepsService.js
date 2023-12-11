@@ -18,8 +18,19 @@ class KeepsService {
     AppState.activeKeep = new Keep(res.data)
   }
 
+  async getKeepsByProfileId(profileId) {
+    const res = await api.get(`api/profiles/${profileId}/keeps`);
+    logger.log("[GOT KEEPS FOR PROFILE", res.data);
+
+    AppState.keeps = res.data.map(obj => new Keep(obj));
+  }
+
   clearActiveKeep() {
     AppState.activeKeep = null;
+  }
+
+  clearKeeps() {
+    AppState.keeps = [];
   }
 }
 

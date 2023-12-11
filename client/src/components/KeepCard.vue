@@ -6,7 +6,7 @@
         {{ keep.name }}
       </div>
       <div>
-        <img class="rounded-circle" :src="keep.creator.picture" :alt="keep.creator.name">
+        <img @click.stop="goToProfile()" class="rounded-circle" :src="keep.creator.picture" :alt="keep.creator.name">
       </div>
     </div>
   </section>
@@ -20,18 +20,28 @@ import { Keep } from "../models/Keep";
 import Pop from "../utils/Pop";
 import { keepsService } from "../services/KeepsService";
 import { Modal } from "bootstrap";
+import { useRouter } from "vue-router";
 export default {
   props: {
     keep: { type: Keep, required: true }
   },
   setup(props) {
+    const router = useRouter();
     const keep = props.keep;
     return {
       async openKeep() {
         try {
-          keepsService.clearActiveKeep()
-          keepsService.getKeepById(keep.id)
-          Modal.getOrCreateInstance("#keepModal").show()
+          keepsService.clearActiveKeep();
+          keepsService.getKeepById(keep.id);
+          Modal.getOrCreateInstance("#keepModal").show();
+        }
+        catch (error) {
+          Pop.error(error);
+        }
+      },
+      async goToProfile() {
+        try {
+          router.push({ name: 'Profile', params: { profileId: keep.creator.id } });
         }
         catch (error) {
           Pop.error(error)
