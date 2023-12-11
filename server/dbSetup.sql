@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS keeps(
   description VARCHAR(500) NOT NULL,
   img VARCHAR(1000) NOT NULL,
   views INT NOT NULL DEFAULT 0,
+  kept INT NOT NULL DEFAULT 0,
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8;
 
@@ -42,7 +43,9 @@ CREATE TABLE IF NOT EXISTS vaultKeeps(
   FOREIGN KEY (vaultId) REFERENCES vaults(id) ON DELETE CASCADE,
   FOREIGN KEY (keepId) REFERENCES keeps(id) ON DELETE CASCADE
 ) default charset utf8;
--- SECTION INSERTING DATA
-INSERT INTO 
-keeps(creatorId, name, description, img)
-VALUES("652eea447727972034edd2ba", "Name Test", "Desc TEST", "https://images.unsplash.com/photo-1682687982046-e5e46906bc6e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+
+
+-- SECTION INDIVIDUAL TABLE DROPS
+DROP TABLE vaultKeeps;
+DROP TABLE keeps;
+DROP TABLE vaults;
