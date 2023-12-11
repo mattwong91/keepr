@@ -39,7 +39,7 @@ export default {
           Pop.error(error);
         }
       },
-      async goToProfile() {
+      goToProfile() {
         try {
           router.push({ name: 'Profile', params: { profileId: keep.creator.id } });
         }

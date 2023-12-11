@@ -18,7 +18,7 @@
       <div class="col-12 text-start">
         <h2>Vaults</h2>
       </div>
-      <div v-for="vault in vaults" :key="vault.id" class="col-6 col-md-4 col-lg-3">
+      <div v-for="vault in vaults" :key="vault.id" class="col-6 col-md-4 col-lg-3 col-xl-2">
         <VaultCard :vault="vault" />
       </div>
     </section>
