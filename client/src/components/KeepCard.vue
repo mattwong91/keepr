@@ -1,5 +1,6 @@
 <template>
-  <section class="row m-1 rounded card-img" :style="`background-image: url(${keep.img})`">
+  <section @click="openKeep()" type="button" class="row m-1 rounded card-img"
+    :style="`background-image: url(${keep.img})`">
     <div class="col-12 d-flex justify-content-between align-items-center">
       <div class="text-white fw-bold">
         {{ keep.name }}
@@ -16,12 +17,27 @@
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import { Keep } from "../models/Keep";
+import Pop from "../utils/Pop";
+import { keepsService } from "../services/KeepsService";
+import { Modal } from "bootstrap";
 export default {
   props: {
     keep: { type: Keep, required: true }
   },
-  setup() {
-    return {}
+  setup(props) {
+    const keep = props.keep;
+    return {
+      async openKeep() {
+        try {
+          keepsService.clearActiveKeep()
+          keepsService.getKeepById(keep.id)
+          Modal.getOrCreateInstance("#keepModal").show()
+        }
+        catch (error) {
+          Pop.error(error)
+        }
+      }
+    }
   }
 };
 </script>
