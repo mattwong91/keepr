@@ -52,11 +52,22 @@ export default {
   setup() {
     const form = ref({})
     const route = useRoute()
+    const account = computed(() => AppState.account)
     return {
       async createKeep() {
         try {
           const keepData = form.value
-          await keepsService.createKeep(keepData)
+          const newKeep = await keepsService.createKeep(keepData)
+          switch (route.name) {
+            case 'Profile':
+              if (newKeep.creatorId == route.params.profileId) {
+                keepsService.addKeep(newKeep)
+              }
+              break;
+            case 'Home':
+              keepsService.addKeep(newKeep)
+              break;
+          }
           Pop.toast('Posted your keep!', 'success', 'top', 1500, false)
           Modal.getOrCreateInstance('#createKeepModal').hide()
           form.value = {}
