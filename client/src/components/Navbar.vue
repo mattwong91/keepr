@@ -8,6 +8,7 @@
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createKeepModal">
       Create Keep
     </button>
+    <button @click="testRoute()" type="button" class="btn btn-danger">Get route</button>
     <Login />
   </nav>
 </template>
@@ -16,10 +17,13 @@
 import { onMounted, ref } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
+import { useRoute } from "vue-router";
+import { logger } from "../utils/Logger";
 export default {
   setup() {
 
     const theme = ref(loadState('theme') || 'light')
+    const route = useRoute()
 
     onMounted(() => {
       document.documentElement.setAttribute('data-bs-theme', theme.value)
@@ -31,6 +35,9 @@ export default {
         theme.value = theme.value == 'light' ? 'dark' : 'light'
         document.documentElement.setAttribute('data-bs-theme', theme.value)
         saveState('theme', theme.value)
+      },
+      testRoute() {
+        logger.log(route)
       }
     }
   },
