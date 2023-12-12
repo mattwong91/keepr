@@ -79,6 +79,21 @@ public class VaultsRepository
     acc.*
     FROM vaults v
     JOIN accounts acc ON acc.id = v.creatorId
+    WHERE v.creatorId = @profileId";
+
+    List<Vault> vaults = _db.Query<Vault, Profile, Vault>(sql, PopulateCreator, new { profileId }).ToList();
+
+    return vaults;
+  }
+
+  internal List<Vault> GetPublicVaultsByProfileId(string profileId)
+  {
+    string sql = @"
+    SELECT
+    v.*,
+    acc.*
+    FROM vaults v
+    JOIN accounts acc ON acc.id = v.creatorId
     WHERE v.creatorId = @profileId AND v.isPrivate = false;";
 
     List<Vault> vaults = _db.Query<Vault, Profile, Vault>(sql, PopulateCreator, new { profileId }).ToList();
@@ -100,4 +115,5 @@ public class VaultsRepository
     vault.Creator = profile;
     return vault;
   }
+
 }

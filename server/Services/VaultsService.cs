@@ -57,10 +57,18 @@ public class VaultsService
     return $"Vault id: {vaultId} name: {vault.Name} has been deleted.";
   }
 
-  internal List<Vault> GetVaultsByProfileId(string profileId)
+  internal List<Vault> GetVaultsByProfileId(string profileId, Account userInfo)
   {
-    List<Vault> vaults = _vaultsRepo.GetVaultsByProfileId(profileId);
-    return vaults;
+    if (userInfo == null)
+    {
+      List<Vault> vaults = _vaultsRepo.GetPublicVaultsByProfileId(profileId);
+      return vaults;
+    }
+    else
+    {
+      List<Vault> vaults = _vaultsRepo.GetVaultsByProfileId(profileId);
+      return vaults;
+    }
   }
 
   internal List<Vault> GetMyVaults(string userId)
