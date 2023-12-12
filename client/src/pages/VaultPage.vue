@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <section class="row justify-content-center my-3">
       <div class="col-6">
-        <div class="d-flex justify-content-center align-items-end vault-img rounded"
+        <div v-if="vault" class="d-flex justify-content-center align-items-end vault-img rounded"
           :style="`background-image: url(${vault.img})`">
           <div class="text-center pb-4 text-white">
             <h2>{{ vault.name }}</h2>
@@ -28,7 +28,7 @@
 
 
 <script>
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted, watch } from 'vue';
 import Pop from "../utils/Pop";
@@ -40,12 +40,15 @@ import { keepsService } from "../services/KeepsService";
 export default {
   setup() {
     const route = useRoute();
+    const router = useRouter();
     const watchableVaultId = route.params.vaultId;
+
     watch(watchableVaultId, () => {
       keepsService.clearKeeps();
       getVaultById();
       getKeepsInVault();
     }, { immediate: true });
+
     async function getVaultById() {
       try {
         const vaultId = route.params.vaultId;
@@ -53,8 +56,12 @@ export default {
       }
       catch (error) {
         Pop.error(error);
+        if (error.response.data.includes('ACCESS DENIED')) {
+          router.push({ name: 'Home' })
+        }
       }
     }
+
     async function getKeepsInVault() {
       try {
         const vaultId = route.params.vaultId;
@@ -64,6 +71,7 @@ export default {
         Pop.error(error);
       }
     }
+
     return {
       vault: computed(() => AppState.activeVault),
       keeps: computed(() => AppState.keeps)

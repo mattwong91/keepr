@@ -5,6 +5,10 @@
       <button @click.stop="deleteKeep()" class="rounded-circle bg-danger border-0 text-white mdi mdi-close"
         title="Delete Keep"></button>
     </div>
+    <div v-if="keep.creatorId == account.id && isVaultPage" class="delete">
+      <button @click.stop="removeKeep()" class="delete-button d-flex justify-content-center" title="Remove Keep"><i
+          class="mdi mdi-close"></i></button>
+    </div>
     <div class="col-12 d-flex justify-content-between align-items-center">
       <div class="text-white fw-bold">
         {{ keep.name }}
@@ -25,6 +29,7 @@ import Pop from "../utils/Pop";
 import { keepsService } from "../services/KeepsService";
 import { Modal } from "bootstrap";
 import { useRoute, useRouter } from "vue-router";
+import { vaultKeepsService } from "../services/VaultKeepsService";
 
 export default {
   props: {
@@ -53,6 +58,19 @@ export default {
           }
           keepsService.deleteKeepById(keep.id)
           Pop.toast('Keep deleted', 'info', 'top', 1500, false)
+        }
+        catch (error) {
+          Pop.error(error)
+        }
+      },
+      async removeKeep() {
+        try {
+          const confirmRemove = await Pop.confirm('Are you sure you want to remove this Keep from your vault?', 'It will be gone forever!', 'Remove!', 'warning')
+          if (!confirmRemove) {
+            return
+          }
+          vaultKeepsService.removeKeepFromVault(keep.vaultKeepId)
+          Pop.toast('Keep removed from vault', 'info', 'top', 1500, false)
         }
         catch (error) {
           Pop.error(error)
@@ -98,5 +116,17 @@ export default {
   position: absolute;
   top: -10%;
   right: -5%;
+  justify-content: end;
+  display: flex;
+}
+
+.delete-button {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: rgb(214, 30, 30);
+  color: white;
+  border: 0px;
+  justify-content: center;
 }
 </style>

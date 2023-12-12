@@ -10,5 +10,6 @@ export class Keep extends RepoItem {
     this.views = data.views
     this.kept = data.kept
     this.creator = data.creator
+    this.vaultKeepId = data.vaultKeepId
   }
 }
