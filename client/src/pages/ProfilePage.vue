@@ -50,9 +50,11 @@ export default {
   setup() {
     const route = useRoute();
     const watchableProfileId = computed(() => route.params.profileId);
+
     watch(watchableProfileId, () => {
       profilesService.clearActiveProfile();
       keepsService.clearKeeps();
+      vaultsService.clearVaults();
       getProfileById();
       getKeepsByProfileId();
       getVaultsByProfileId();
