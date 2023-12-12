@@ -28,11 +28,13 @@ class KeepsService {
   async createKeep(keepData) {
     const res = await api.post("api/keeps", keepData)
     logger.log("[CREATED KEEP]", res.data)
+
     return new Keep(res.data)
   }
 
   async deleteKeepById(keepId) {
     await api.delete(`api/keeps/${keepId}`)
+
     AppState.keeps = AppState.keeps.filter(keep => keep.id != keepId)
   }
 
