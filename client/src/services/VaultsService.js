@@ -10,6 +10,27 @@ class VaultsService {
 
     AppState.vaults = res.data.map(obj => new Vault(obj))
   }
+
+  async createVault(vaultData) {
+    const res = await api.post('api/vaults', vaultData)
+    logger.log("[CREATED VAULT]", res.data)
+
+    return new Vault(res.data)
+  }
+
+  async deleteVaultById(vaultId) {
+    await api.delete(`api/vaults/${vaultId}`)
+
+    AppState.vaults = AppState.vaults.filter(vault => vault.id != vaultId)
+  }
+
+  addVault(newVault) {
+    AppState.vaults.push(newVault)
+  }
+
+  clearVaults() {
+    AppState.vaults = []
+  }
 }
 
 export const vaultsService = new VaultsService()
