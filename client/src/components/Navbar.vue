@@ -5,10 +5,13 @@
         Home
       </div>
     </router-link>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createKeepModal">
+    <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#createKeepModal">
       Create Keep
     </button>
-    <button @click="testRoute()" type="button" class="btn btn-danger">Get route</button>
+    <button type="button" class="btn btn-warning mx-1" data-bs-toggle="modal" data-bs-target="#createVaultModal">
+      Create Vault
+    </button>
+    <button @click="testRoute()" type="button" class="btn btn-danger mx-1">Get route</button>
     <Login />
   </nav>
 </template>
