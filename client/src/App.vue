@@ -1,11 +1,12 @@
 <template>
-  <header>
+  <header class="sticky-top">
     <Navbar />
   </header>
   <main>
     <router-view />
   </main>
   <KeepModal></KeepModal>
+  <CreateKeepModal></CreateKeepModal>
 </template>
 
 <script>
@@ -13,6 +14,7 @@ import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import KeepModal from "./components/KeepModal.vue"
+import CreateKeepModal from "./components/CreateKeepModal.vue"
 
 export default {
   setup() {
@@ -20,7 +22,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, KeepModal }
+  components: { Navbar, KeepModal, CreateKeepModal }
 }
 </script>
 <style lang="scss">
