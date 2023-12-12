@@ -21,7 +21,7 @@ public class VaultsService
     Vault vault = _vaultsRepo.GetVaultById(vaultId);
     if (vault == null)
     {
-      throw new Exception($"Vault with id: {vaultId} does not exist.");
+      throw new Exception($"ACCESS DENIED. Vault with id: {vaultId} does not exist.");
     }
     if (vault.IsPrivate == true && vault.CreatorId != userId)
     {

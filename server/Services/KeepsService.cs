@@ -84,9 +84,9 @@ public class KeepsService
   internal List<KeepInVault> GetKeepsByVaultId(int vaultId, string userId)
   {
     Vault vault = _vaultsService.GetVaultById(vaultId, userId);
-    if (vault.IsPrivate == true)
+    if (vault.CreatorId != userId && vault.IsPrivate == true)
     {
-      throw new Exception("This vault is private.");
+      throw new Exception("ACCESS DENIED. This vault is private.");
     }
 
     List<KeepInVault> keeps = _keepsRepo.GetKeepsByVaultId(vaultId);
