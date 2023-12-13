@@ -1,7 +1,7 @@
 <template>
   <section @click="goToVault()" type="button" class="row m-1 rounded card-img"
     :style="`background-image: url(${vault.img})`">
-    <div>
+    <div v-if="vault.creatorId == account.id">
       <button @click.stop="deleteVault()" class="rounded-circle bg-danger border-0 text-white mdi mdi-close"
         title="Delete Vault"></button>
     </div>
@@ -54,7 +54,8 @@ export default {
         catch (error) {
           Pop.error(error)
         }
-      }
+      },
+      account: computed(() => AppState.account)
     }
   }
 };
