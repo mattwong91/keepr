@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <section class="row justify-content-center my-3">
-      <div class="col-6">
+      <div class="col-12 col-md-6 p-2">
         <div v-if="vault" class="d-flex justify-content-center align-items-end vault-img rounded"
           :style="`background-image: url(${vault.img})`">
           <div class="text-center pb-4 text-white">
@@ -10,15 +10,15 @@
           </div>
         </div>
         <div class="text-end my-1">
-          <button class="btn btn-dark rounded-pill">...</button>
+          <button class="btn btn-dark rounded-pill px-3 py-0">...</button>
         </div>
         <div class="text-center d-flex justify-content-center">
-          <p class="rounded-pill text-white bg-dark p-1">{{ keeps.length }} Keeps</p>
+          <p class="rounded-pill text-white bg-dark px-2">{{ keeps.length }} Keeps</p>
         </div>
       </div>
     </section>
 
-    <section class="row m-2">
+    <section class="row p-2 px-md-5">
       <div v-for="keep in keeps" :key="keep.id" class="col-6 col-md-4 col-lg-3">
         <KeepCard :keep="keep" />
       </div>
