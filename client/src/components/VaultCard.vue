@@ -1,25 +1,24 @@
 <template>
   <section @click="goToVault()" type="button" class="row m-1 rounded card-img"
     :style="`background-image: url(${vault.img})`">
-    <div v-if="vault.creatorId == account.id">
-      <button @click.stop="deleteVault()" class="rounded-circle bg-danger border-0 text-white mdi mdi-close"
-        title="Delete Vault"></button>
+    <div v-if="vault.creatorId == account.id" class="text-end delete">
+      <button @click.stop="deleteVault()" class="delete-button d-flex justify-content-center" title="Delete Vault"><i
+          class="mdi mdi-close delete-text"></i></button>
     </div>
-    <div v-if="vault.isPrivate" class="d-flex flex-column justify-content-between">
-      <div class="col-12 d-flex justify-content-end text-white pt-1">
+
+    <div class="d-flex flex-column justify-content-end">
+      <div v-if="vault.isPrivate" class="col-12 vault-details">
+        <p>{{ vault.name }}</p>
         <div class="lock-circle">
           <i class="mdi mdi-lock fs-4"></i>
         </div>
       </div>
-      <div class="col-12 text-start text-white fw-bold">
+      <div v-else class="col-12 text-start text-white fw-bold">
         <p>{{ vault.name }}</p>
       </div>
     </div>
-    <div v-else class="d-flex align-items-end">
-      <div class="col-12 text-start text-white fw-bold">
-        <p>{{ vault.name }}</p>
-      </div>
-    </div>
+
+
   </section>
 </template>
 
@@ -72,6 +71,7 @@ p {
   background-size: cover;
   width: 100%;
   height: 20vh;
+  position: relative;
 }
 
 .lock-circle {
@@ -83,5 +83,36 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.vault-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+}
+
+.delete {
+  position: absolute;
+  top: -4%;
+  right: -10%;
+  justify-content: end;
+  display: flex;
+}
+
+.delete-button {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background-color: rgb(214, 30, 30);
+  color: white;
+  border: 0px;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-text {
+  font-size: small;
 }
 </style>
