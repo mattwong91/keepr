@@ -49,7 +49,7 @@ export default {
             return
           }
           vaultsService.deleteVaultById(vault.id)
-          Pop.toast('Keep deleted', 'info', 'top', 1500, false)
+          Pop.toast('Vault deleted', 'info', 'top', 1500, false)
         }
         catch (error) {
           Pop.error(error)
