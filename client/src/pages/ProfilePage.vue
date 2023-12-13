@@ -10,7 +10,7 @@
       </div>
       <div class="col-12">
         <h1>{{ profile.name }}</h1>
-        <p>vaults.length Vaults | {{ keeps.length }} Keeps</p>
+        <p>{{ vaults.length }} Vaults | {{ keeps.length }} Keeps</p>
       </div>
     </section>
 
