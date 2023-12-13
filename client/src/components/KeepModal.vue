@@ -21,12 +21,12 @@
                 </div>
               </div>
 
-              <div class="text-center">
-                <h1>{{ keep.name }}</h1>
+              <div class="text-center py-3 py-md-0">
+                <h1 class="pb-2">{{ keep.name }}</h1>
                 <p>{{ keep.description }}</p>
               </div>
 
-              <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center py-1">
                 <div class="dropdown-center">
                   <button v-if="myVaults.length" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
