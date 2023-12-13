@@ -24,7 +24,11 @@
       </div>
       <div class="col-12">
         <h1>{{ profile.name }}</h1>
-        <p>{{ vaults.length }} Vaults | {{ keeps.length }} Keeps</p>
+        <p>
+          <span v-if="account.id != profile.id">{{ numPublicVaults }}</span>
+          <span v-else>{{ vaults.length }}</span>
+          Vaults | {{ keeps.length }} Keeps
+        </p>
       </div>
     </section>
 
@@ -105,7 +109,10 @@ export default {
       profile: computed(() => AppState.activeProfile),
       keeps: computed(() => AppState.keeps),
       vaults: computed(() => AppState.vaults),
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      numPublicVaults: computed(() => {
+        return AppState.vaults.filter(vault => !vault.isPrivate).length
+      })
     };
   },
   components: { KeepCard, VaultCard }
