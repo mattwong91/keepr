@@ -1,11 +1,11 @@
 <template>
-  <div class="container text-center px-5">
+  <div class="container-fluid text-center px-md-5">
 
-    <section class="row justify-content-center">
-      <div class="col-8">
-        <div class="d-flex flex-column">
-          <img class="img-fluid cover-img" :src="profile.coverImg" alt="Cover image">
-          <div class="text-center">
+    <section class="row justify-content-center pt-2">
+      <div class="col-12 col-md-8 p-0">
+        <div class="d-flex flex-column text-center">
+          <img v-if="profile.coverImg" class="img-fluid cover-img" :src="profile.coverImg" alt="Cover image">
+          <div class="pt-2">
             <img class="rounded-circle profile-img" :src="profile.picture" :alt="profile.name">
           </div>
         </div>
