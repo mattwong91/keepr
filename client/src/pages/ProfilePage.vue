@@ -2,7 +2,7 @@
   <div class="container-fluid text-center px-md-5">
 
     <section class="row justify-content-center pt-2">
-      <div class="col-12 col-md-8 p-0">
+      <div class="col-12 col-md-8 p-2">
         <div class="d-flex flex-column text-center">
           <img v-if="profile.coverImg" class="img-fluid cover-img" :src="profile.coverImg" alt="Cover image">
           <div class="pt-2">
@@ -13,7 +13,7 @@
       <div class="col-12">
         <div v-if="account" class="dropdown">
           <button v-if="account.id == profile.id" class="btn" type="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
+            aria-expanded="false" title="options">
             ...
           </button>
           <ul class="dropdown-menu">
@@ -28,7 +28,7 @@
       </div>
     </section>
 
-    <section class="row p-5">
+    <section class="row p-2 p-md-5">
       <div class="col-12 text-start">
         <h2>Vaults</h2>
       </div>
@@ -37,7 +37,7 @@
       </div>
     </section>
 
-    <section class="row p-5">
+    <section class="row p-2 p-md-5">
       <div class="col-12 text-start">
         <h2>Keeps</h2>
       </div>
