@@ -44,6 +44,7 @@ export default {
     const watchableVaultId = route.params.vaultId;
 
     watch(watchableVaultId, () => {
+      vaultsService.clearActiveVault();
       keepsService.clearKeeps();
       getVaultById();
       getKeepsInVault();

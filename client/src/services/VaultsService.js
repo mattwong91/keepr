@@ -39,6 +39,10 @@ class VaultsService {
   clearVaults() {
     AppState.vaults = []
   }
+
+  clearActiveVault() {
+    AppState.activeVault = null
+  }
 }
 
 export const vaultsService = new VaultsService()
