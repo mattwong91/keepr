@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid text-center px-md-5">
 
-    <section class="row justify-content-center pt-2">
+    <section v-if="profile" class="row justify-content-center pt-2">
       <div class="col-12 col-md-8 p-2">
         <div class="d-flex flex-column text-center">
           <img v-if="profile.coverImg" class="img-fluid cover-img" :src="profile.coverImg" alt="Cover image">
