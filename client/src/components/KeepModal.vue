@@ -28,7 +28,8 @@
 
               <div class="d-flex justify-content-between align-items-center">
                 <div class="dropdown-center">
-                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <button v-if="myVaults.length" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
                     SAVE TO VAULT
                   </button>
                   <ul class="dropdown-menu">

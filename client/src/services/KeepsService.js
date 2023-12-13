@@ -44,6 +44,7 @@ class KeepsService {
 
   clearActiveKeep() {
     AppState.activeKeep = null;
+    AppState.myVaults = []
   }
 
   clearKeeps() {
