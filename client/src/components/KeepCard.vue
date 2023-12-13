@@ -14,7 +14,8 @@
         {{ keep.name }}
       </div>
       <div v-if="isHomePage">
-        <img @click.stop="goToProfile()" class="rounded-circle" :src="keep.creator.picture" :alt="keep.creator.name">
+        <img @click.stop="goToProfile()" class="rounded-circle profile-img" :src="keep.creator.picture"
+          :alt="keep.creator.name">
       </div>
     </div>
   </section>
@@ -133,5 +134,10 @@ export default {
   color: white;
   border: 0px;
   justify-content: center;
+}
+
+.profile-img {
+  height: 3rem;
+  width: 3rem;
 }
 </style>

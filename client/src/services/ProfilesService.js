@@ -11,6 +11,13 @@ class ProfilesService {
     AppState.activeProfile = new Profile(res.data)
   }
 
+  async editProfile(profileId, profileData) {
+    const res = await api.put(`api/profiles/${profileId}`, profileData)
+    logger.log("[UPDATED PROFILE]", res.data)
+
+    AppState.activeProfile = new Profile(res.data)
+  }
+
   clearActiveProfile() {
     AppState.activeProfile = null;
   }

@@ -8,6 +8,7 @@
   <KeepModal></KeepModal>
   <CreateKeepModal></CreateKeepModal>
   <CreateVaultModal></CreateVaultModal>
+  <EditProfileOffCanvas></EditProfileOffCanvas>
 </template>
 
 <script>
@@ -17,6 +18,7 @@ import Navbar from './components/Navbar.vue'
 import KeepModal from "./components/KeepModal.vue"
 import CreateKeepModal from "./components/CreateKeepModal.vue"
 import CreateVaultModal from "./components/CreateVaultModal.vue"
+import EditProfileOffCanvas from "./components/EditProfileOffCanvas.vue"
 
 export default {
   setup() {
@@ -24,7 +26,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, KeepModal, CreateKeepModal, CreateVaultModal }
+  components: { Navbar, KeepModal, CreateKeepModal, CreateVaultModal, EditProfileOffCanvas }
 }
 </script>
 <style lang="scss">

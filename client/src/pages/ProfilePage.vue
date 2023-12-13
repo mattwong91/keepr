@@ -1,12 +1,26 @@
 <template>
   <div class="container text-center px-5">
 
-    <section class="row">
-      <div class="col-12">
-        <img class="img-fluid" :src="profile.coverImg" alt="Cover image">
+    <section class="row justify-content-center">
+      <div class="col-8">
+        <div class="d-flex flex-column">
+          <img class="img-fluid cover-img" :src="profile.coverImg" alt="Cover image">
+          <div class="text-center">
+            <img class="rounded-circle profile-img" :src="profile.picture" :alt="profile.name">
+          </div>
+        </div>
       </div>
       <div class="col-12">
-        <img class="rounded-circle" :src="profile.picture" :alt="profile.name">
+        <div v-if="account" class="dropdown">
+          <button v-if="account.id == profile.id" class="btn" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            ...
+          </button>
+          <ul class="dropdown-menu">
+            <li><button class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#editOffCanvas"
+                aria-controls="editOffCanvas">Edit Profile</button></li>
+          </ul>
+        </div>
       </div>
       <div class="col-12">
         <h1>{{ profile.name }}</h1>
@@ -90,7 +104,8 @@ export default {
     return {
       profile: computed(() => AppState.activeProfile),
       keeps: computed(() => AppState.keeps),
-      vaults: computed(() => AppState.vaults)
+      vaults: computed(() => AppState.vaults),
+      account: computed(() => AppState.account)
     };
   },
   components: { KeepCard, VaultCard }
@@ -98,4 +113,15 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.cover-img {
+  height: 40vh;
+  object-fit: cover;
+  object-position: center;
+}
+
+.profile-img {
+  height: 10rem;
+  width: 10rem;
+}
+</style>

@@ -1,3 +1,4 @@
+
 namespace keepr.Repositories;
 
 public class ProfilesRepository
@@ -7,6 +8,22 @@ public class ProfilesRepository
   public ProfilesRepository(IDbConnection db)
   {
     _db = db;
+  }
+
+  internal Profile EditProfile(Profile profiletoUpdate)
+  {
+    string sql = @"
+    UPDATE accounts
+    SET
+    name = @Name,
+    picture = @Picture,
+    coverImg = @CoverImg
+    WHERE id = @Id LIMIT 1;
+
+    SELECT * FROM accounts WHERE id = @Id;";
+
+    Profile profile = _db.Query<Profile>(sql, profiletoUpdate).FirstOrDefault();
+    return profile;
   }
 
   internal Profile GetProfileById(string profileId)

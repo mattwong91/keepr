@@ -59,4 +59,21 @@ public class ProfilesController : ControllerBase
       return BadRequest(e.Message);
     }
   }
+
+  [Authorize]
+  [HttpPut("{profileId}")]
+  public async Task<ActionResult<Profile>> EditProfile(string profileId, [FromBody] Profile profileData)
+  {
+    try
+    {
+      Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+      string userId = userInfo?.Id;
+      Profile profile = _profilesService.EditProfile(profileId, userId, profileData);
+      return Ok(profile);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
 }

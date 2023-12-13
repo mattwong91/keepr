@@ -1,17 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-3">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        Home
-      </div>
+  <nav class="navbar navbar-expand-sm px-3">
+    <router-link :to="{ name: 'Home' }">
+      <button class="btn rounded-pill btn-dark py-1 me-2">Home</button>
     </router-link>
-    <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#createKeepModal">
-      Create Keep
-    </button>
-    <button type="button" class="btn btn-warning mx-1" data-bs-toggle="modal" data-bs-target="#createVaultModal">
-      Create Vault
-    </button>
-    <button @click="testRoute()" type="button" class="btn btn-danger mx-1">Get route</button>
     <Login />
   </nav>
 </template>
@@ -38,9 +29,6 @@ export default {
         theme.value = theme.value == 'light' ? 'dark' : 'light'
         document.documentElement.setAttribute('data-bs-theme', theme.value)
         saveState('theme', theme.value)
-      },
-      testRoute() {
-        logger.log(route)
       }
     }
   },
