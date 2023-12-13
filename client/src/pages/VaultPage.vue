@@ -56,9 +56,12 @@ export default {
         await vaultsService.getVaultById(vaultId);
       }
       catch (error) {
-        Pop.error(error);
         if (error.response.data.includes('ACCESS DENIED')) {
+          Pop.error('You do not have access to this vault');
           router.push({ name: 'Home' })
+        }
+        else {
+          Pop.error(error)
         }
       }
     }
