@@ -2,20 +2,23 @@
   <section @click="openKeep()" type="button" class="row m-1 rounded card-img"
     :style="`background-image: url(${keep.img})`">
     <div v-if="keep.creatorId == account.id && !isVaultPage" class="text-end delete">
-      <button @click.stop="deleteKeep()" class="rounded-circle bg-danger border-0 text-white mdi mdi-close"
-        title="Delete Keep"></button>
+      <button @click.stop="deleteKeep()" class="delete-button d-flex justify-content-center" title="Delete Keep"><i
+          class="mdi mdi-close delete-text"></i></button>
     </div>
     <div v-if="activeVault" class="delete">
       <button v-if="activeVault.creatorId == account.id && isVaultPage" @click.stop="removeKeep()"
-        class="delete-button d-flex justify-content-center" title="Remove Keep"><i class="mdi mdi-close"></i></button>
+        class="delete-button d-flex justify-content-center" title="Remove Keep"><i
+          class="mdi mdi-close delete-text"></i></button>
     </div>
-    <div class="col-12 d-flex justify-content-between align-items-center">
-      <div class="text-white fw-bold">
-        {{ keep.name }}
-      </div>
-      <div v-if="isHomePage">
-        <img @click.stop="goToProfile()" class="rounded-circle profile-img" :src="keep.creator.picture"
-          :alt="keep.creator.name">
+    <div class="d-flex flex-column justify-content-end pb-1">
+      <div class="col-12 d-flex justify-content-between align-items-center">
+        <div class="text-white fw-bold">
+          {{ keep.name }}
+        </div>
+        <div v-if="isHomePage">
+          <img @click.stop="goToProfile()" class="rounded-circle profile-img" :src="keep.creator.picture"
+            :alt="keep.creator.name">
+        </div>
       </div>
     </div>
   </section>
@@ -114,26 +117,31 @@ export default {
   background-position: center;
   background-size: cover;
   width: 100%;
-  height: auto;
+  height: 20vh;
   position: relative;
 }
 
 .delete {
   position: absolute;
-  top: -10%;
+  top: -4%;
   right: -5%;
   justify-content: end;
   display: flex;
 }
 
 .delete-button {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
   border-radius: 50%;
   background-color: rgb(214, 30, 30);
   color: white;
   border: 0px;
   justify-content: center;
+  align-items: center;
+}
+
+.delete-text {
+  font-size: small;
 }
 
 .profile-img {
