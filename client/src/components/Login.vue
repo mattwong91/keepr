@@ -13,11 +13,9 @@
         </div>
         <div class="dropdown-menu dropdown-menu-lg-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
           <div class="list-group">
-            <router-link :to="{ name: 'Profile', params: { profileId: account.id } }">
-              <div class="list-group-item dropdown-item list-group-item-action">
-                My Profile
-              </div>
-            </router-link>
+            <button @click="goToProfile()" class="list-group-item dropdown-item list-group-item-action">
+              My Profile
+            </button>
             <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
               <i class="mdi mdi-logout"></i>
               logout
@@ -33,8 +31,12 @@
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
+import Pop from "../utils/Pop"
+import { useRouter } from "vue-router"
+
 export default {
   setup() {
+    const router = useRouter();
     return {
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
@@ -43,6 +45,14 @@ export default {
       },
       async logout() {
         AuthService.logout({ returnTo: window.location.origin })
+      },
+      goToProfile() {
+        try {
+          router.push({ name: 'Profile', params: { profileId: this.account.id } });
+        }
+        catch (error) {
+          Pop.error(error)
+        }
       }
     }
   }
