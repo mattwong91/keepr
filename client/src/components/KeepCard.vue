@@ -45,7 +45,9 @@ export default {
         try {
           keepsService.clearActiveKeep();
           keepsService.getKeepById(keep.id);
-          vaultsService.getMyVaults();
+          if (this.account.id) {
+            vaultsService.getMyVaults();
+          }
           Modal.getOrCreateInstance("#keepModal").show();
         }
         catch (error) {
