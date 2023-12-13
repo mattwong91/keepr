@@ -4,9 +4,11 @@
       <div class="modal-content">
         <div class="modal-body p-0">
           <section v-if="keep" class="row">
+
             <div class="col-12 col-md-5">
               <img class="img-fluid keep-img" :src="keep.img" :alt="keep.name">
             </div>
+
             <div class="col-12 col-md-7 d-flex flex-column justify-content-between p-4">
               <div class="d-flex justify-content-center">
                 <div class="d-flex px-1 align-items-center">
@@ -18,23 +20,33 @@
                   <p>{{ keep.kept }}</p>
                 </div>
               </div>
+
               <div class="text-center">
                 <h1>{{ keep.name }}</h1>
                 <p>{{ keep.description }}</p>
               </div>
-              <div class="d-flex justify-content-between">
-                <div v-if="isVaultPage" class="d-flex align-items-center">
-                  <button @click="removeKeep()" class="btn btn-danger"><i class="mdi mdi-cancel"></i> Remove</button>
+
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="dropdown-center">
+                  <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    My Vaults
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li v-for="vault in myVaults" :key="vault.id">
+                      <button @click="addKeepToVault(vault, keep)" class="dropdown-item"><img class="dropdown-img me-2"
+                          :src="vault.img" alt="vault image">{{
+                            vault.name }}</button>
+                    </li>
+                  </ul>
                 </div>
-                <div v-else class="d-flex align-items-center">
-                  <p class="pe-2">VAULTS DROPDOWN</p>
-                  <button class="btn btn-primary">SAVE</button>
-                </div>
+
                 <div class="d-flex align-items-center">
                   <img class="rounded-circle profile-img px-1" :src="keep.creator.picture" :alt="keep.creator.name">
                   <p class="px-1">{{ keep.creator.name }}</p>
                 </div>
               </div>
+
             </div>
           </section>
         </div>
@@ -45,15 +57,31 @@
 
 
 <script>
-import { useRoute } from "vue-router";
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed } from 'vue';
+import Pop from "../utils/Pop";
+import { vaultKeepsService } from "../services/VaultKeepsService";
 
 export default {
   setup() {
-    const route = useRoute()
     return {
-      keep: computed(() => AppState.activeKeep)
+      keep: computed(() => AppState.activeKeep),
+      myVaults: computed(() => AppState.myVaults),
+      async addKeepToVault(vault, keep) {
+        try {
+          const confirmAdd = await Pop.confirm('Would you like to save this keep?', `${keep.name} would be added to the "${vault.name}" vault`, 'Save', 'question')
+          if (!confirmAdd) {
+            return
+          }
+          const vaultKeepData = { vaultId: vault.id, keepId: keep.id }
+          await vaultKeepsService.addKeepToVault(vaultKeepData)
+          keep.kept++
+          Pop.toast(`Keep added to ${vault.name}!`, 'success', 'top', 1500, false)
+        }
+        catch (error) {
+          Pop.error(error)
+        }
+      }
     }
   }
 };
@@ -75,6 +103,13 @@ p {
   height: 100%;
   border-top-left-radius: 0.375rem;
   border-top-right-radius: 0.375rem;
+}
+
+.dropdown-img {
+  width: 5rem;
+  border-radius: .375rem;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 
 @media (min-width: 768px) {

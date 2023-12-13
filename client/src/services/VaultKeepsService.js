@@ -11,6 +11,12 @@ class VaultKeepsService {
     AppState.keeps = res.data.map(obj => new Keep(obj))
   }
 
+  async addKeepToVault(vaultKeepData) {
+    const res = await api.post('api/vaultkeeps', vaultKeepData)
+    logger.log("[ADDED KEEP TO VAULT]", res.data)
+
+  }
+
   async removeKeepFromVault(vaultKeepId) {
     await api.delete(`api/vaultkeeps/${vaultKeepId}`)
 
