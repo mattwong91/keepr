@@ -41,7 +41,7 @@
                   </ul>
                 </div>
 
-                <div class="d-flex align-items-center">
+                <div @click="goToProfile()" class="d-flex align-items-center" type="button">
                   <img class="rounded-circle profile-img px-1" :src="keep.creator.picture" :alt="keep.creator.name">
                   <p class="px-1">{{ keep.creator.name }}</p>
                 </div>
@@ -61,9 +61,12 @@ import { AppState } from '../AppState';
 import { computed } from 'vue';
 import Pop from "../utils/Pop";
 import { vaultKeepsService } from "../services/VaultKeepsService";
+import { Modal } from "bootstrap";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
+    const router = useRouter();
     return {
       keep: computed(() => AppState.activeKeep),
       myVaults: computed(() => AppState.myVaults),
@@ -77,6 +80,15 @@ export default {
           await vaultKeepsService.addKeepToVault(vaultKeepData)
           keep.kept++
           Pop.toast(`Keep added to ${vault.name}!`, 'success', 'top', 1500, false)
+        }
+        catch (error) {
+          Pop.error(error)
+        }
+      },
+      goToProfile() {
+        try {
+          Modal.getOrCreateInstance('#keepModal').hide()
+          router.push({ name: 'Profile', params: { profileId: this.keep.creatorId } });
         }
         catch (error) {
           Pop.error(error)

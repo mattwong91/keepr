@@ -83,7 +83,7 @@ export default {
       },
       goToProfile() {
         try {
-          router.push({ name: 'Profile', params: { profileId: keep.creator.id } });
+          router.push({ name: 'Profile', params: { profileId: keep.creatorId } });
         }
         catch (error) {
           Pop.error(error)
