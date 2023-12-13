@@ -5,9 +5,9 @@
       <button @click.stop="deleteKeep()" class="rounded-circle bg-danger border-0 text-white mdi mdi-close"
         title="Delete Keep"></button>
     </div>
-    <div v-if="keep.creatorId == account.id && isVaultPage" class="delete">
-      <button @click.stop="removeKeep()" class="delete-button d-flex justify-content-center" title="Remove Keep"><i
-          class="mdi mdi-close"></i></button>
+    <div v-if="activeVault" class="delete">
+      <button v-if="activeVault.creatorId == account.id && isVaultPage" @click.stop="removeKeep()"
+        class="delete-button d-flex justify-content-center" title="Remove Keep"><i class="mdi mdi-close"></i></button>
     </div>
     <div class="col-12 d-flex justify-content-between align-items-center">
       <div class="text-white fw-bold">
@@ -30,6 +30,7 @@ import { keepsService } from "../services/KeepsService";
 import { Modal } from "bootstrap";
 import { useRoute, useRouter } from "vue-router";
 import { vaultKeepsService } from "../services/VaultKeepsService";
+import { vaultsService } from "../services/VaultsService";
 
 export default {
   props: {
@@ -44,6 +45,7 @@ export default {
         try {
           keepsService.clearActiveKeep();
           keepsService.getKeepById(keep.id);
+          vaultsService.getMyVaults();
           Modal.getOrCreateInstance("#keepModal").show();
         }
         catch (error) {
@@ -96,7 +98,8 @@ export default {
           return true
         }
         return false
-      })
+      }),
+      activeVault: computed(() => AppState.activeVault)
     }
   }
 };
