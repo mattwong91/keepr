@@ -19,7 +19,7 @@
               </div>
               <div class="mb-3">
                 <input v-model="form.img" type="url" class="form-control" id="img" placeholder="Image URL..."
-                  title="Image URL" maxlength="1000" required>
+                  title="Image URL" maxlength="500" required>
               </div>
               <div class="mb-3">
                 <textarea v-model="form.description" class="form-control description-box" name="description"
@@ -52,7 +52,6 @@ export default {
   setup() {
     const form = ref({})
     const route = useRoute()
-    const account = computed(() => AppState.account)
     return {
       async createKeep() {
         try {

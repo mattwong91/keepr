@@ -12,16 +12,18 @@
       <form @submit.prevent="editProfile()" class="text-start">
         <div class="mb-3">
           <label for="Name" class="form-label">Name</label>
-          <input v-model="form.name" type="text" class="form-control" id="Name" aria-describedby="emailHelp"
-            maxlength="255" :placeholder="profile.name">
+          <input v-model="form.name" type="text" class="form-control" id="Name" maxlength="255"
+            :placeholder="profile.name">
         </div>
         <div class="mb-3">
           <label for="Picture" class="form-label">Profile Picture</label>
-          <input v-model="form.picture" type="url" class="form-control" id="Picture" placeholder="Image URL...">
+          <input v-model="form.picture" type="url" class="form-control" id="Picture" maxlength="500"
+            placeholder="Image URL...">
         </div>
         <div class="mb-3">
           <label for="CoverImage" class="form-label">Cover Image</label>
-          <input v-model="form.coverImg" type="url" class="form-control" id="CoverImage" placeholder="Cover Image URL...">
+          <input v-model="form.coverImg" type="url" class="form-control" id="CoverImage" maxlength="500"
+            placeholder="Cover Image URL...">
         </div>
         <div class="text-end">
           <button type="submit" class="btn btn-primary">Save changes</button>
