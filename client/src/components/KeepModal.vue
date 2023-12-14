@@ -21,7 +21,7 @@
                 </div>
               </div>
 
-              <div class="text-center py-3 py-md-0">
+              <div class="text-center py-3 py-md-0 text-block">
                 <h1 class="pb-2">{{ keep.name }}</h1>
                 <p>{{ keep.description }}</p>
               </div>
@@ -127,6 +127,11 @@ p {
 
 .scroll {
   height: 30vh;
+  overflow-y: scroll;
+}
+
+.text-block {
+  overflow-x: hidden;
   overflow-y: scroll;
 }
 

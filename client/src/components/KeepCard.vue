@@ -12,12 +12,12 @@
     </div>
     <div class="d-flex flex-column justify-content-end pb-1">
       <div class="col-12 d-flex justify-content-between align-items-center">
-        <div class="text-white fw-bold">
+        <div class="text-white fw-bold text-block">
           {{ keep.name }}
         </div>
         <div v-if="isHomePage">
           <img @click.stop="goToProfile()" class="rounded-circle profile-img" :src="keep.creator.picture"
-            :alt="keep.creator.name">
+            :alt="keep.creator.name" :title="keep.creator.name">
         </div>
       </div>
     </div>
@@ -147,5 +147,9 @@ export default {
 .profile-img {
   height: 3rem;
   width: 3rem;
+}
+
+.text-block {
+  overflow-x: hidden;
 }
 </style>
