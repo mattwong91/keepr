@@ -1,8 +1,8 @@
 <template>
-  <header class="sticky-bottom sticky-md-top order-2 order-md-1">
+  <header class="sticky-top">
     <Navbar />
   </header>
-  <main class="order-1 order-md-2">
+  <main class="">
     <router-view />
   </main>
   <KeepModal></KeepModal>
