@@ -36,7 +36,7 @@
       <div class="col-12 text-start">
         <h2>Vaults</h2>
       </div>
-      <div v-for="vault in vaults" :key="vault.id" class="col-6 col-md-4 col-lg-3 col-xl-2">
+      <div v-for="vault in vaults" :key="vault.id" class="col-6 col-md-4 col-lg-3 col-xl-2 p-md-3">
         <VaultCard :vault="vault" />
       </div>
     </section>
@@ -45,7 +45,7 @@
       <div class="col-12 text-start">
         <h2>Keeps</h2>
       </div>
-      <div v-for="keep in keeps" :key="keep.id" class="col-6 col-md-4 col-lg-3">
+      <div v-for="keep in keeps" :key="keep.id" class="col-6 col-md-4 col-lg-3 p-md-3">
         <KeepCard :keep="keep" />
       </div>
     </section>

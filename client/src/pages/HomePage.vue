@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid pt-5">
     <section class="row m-2">
-      <div v-for="keep in keeps" :key="keep.id" class="col-6 col-md-4 col-lg-3">
+      <div v-for="keep in keeps" :key="keep.id" class="col-6 col-md-4 col-lg-3 p-3">
         <KeepCard :keep="keep" />
       </div>
     </section>

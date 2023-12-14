@@ -32,7 +32,7 @@
                     aria-expanded="false">
                     SAVE TO VAULT
                   </button>
-                  <ul class="dropdown-menu">
+                  <ul class="dropdown-menu scroll">
                     <li v-for="vault in myVaults" :key="vault.id">
                       <button @click="addKeepToVault(vault, keep)" class="dropdown-item"><img class="dropdown-img me-2"
                           :src="vault.img" alt="vault image">{{
@@ -45,6 +45,7 @@
                   <img class="rounded-circle profile-img px-1" :src="keep.creator.picture" :alt="keep.creator.name">
                   <p class="px-1">{{ keep.creator.name }}</p>
                 </div>
+
               </div>
 
             </div>
@@ -122,6 +123,11 @@ p {
   border-radius: .375rem;
   aspect-ratio: 1/1;
   object-fit: cover;
+}
+
+.scroll {
+  height: 30vh;
+  overflow-y: scroll;
 }
 
 @media (min-width: 768px) {
