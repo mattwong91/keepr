@@ -6,3 +6,4 @@ services:
       - keepr-env
     ports:
       - "7045:80"
+    restart: unless-stopped
