@@ -1,10 +1,7 @@
 <template>
-  <nav class="navbar bg-light px-3 nav-border">
+  <nav class="navbar bg-white px-3 nav-border">
 
     <div class="d-flex align-items-center">
-      <router-link :to="{ name: 'Home' }">
-        <button class="btn rounded-pill btn-dark py-1 me-2">Home</button>
-      </router-link>
       <div class="dropdown">
         <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Create
@@ -20,8 +17,10 @@
         </ul>
       </div>
     </div>
-    <div>
-      <p class="logo ps-1 pe-4">the<br>keepr<br>co.</p>
+    <div class="navbar-brand m-0 p-0">
+      <router-link :to="{ name: 'Home' }">
+        <img src="/src/assets/img/keepr-logo.png" alt="keepr logo" height="70">
+      </router-link>
     </div>
     <Login />
 
