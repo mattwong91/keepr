@@ -132,7 +132,7 @@ p {
 
 .text-block {
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 @media (min-width: 768px) {

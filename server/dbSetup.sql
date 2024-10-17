@@ -1,4 +1,4 @@
--- Active: 1702937449550@@34.221.176.11@3306@keepr
+-- Active: 1729148408303@@35.92.133.151@3306@keepr
 CREATE TABLE IF NOT EXISTS accounts(
   id VARCHAR(255) NOT NULL primary key COMMENT 'primary key',
   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
@@ -46,9 +46,8 @@ CREATE TABLE IF NOT EXISTS vaultKeeps(
   FOREIGN KEY (keepId) REFERENCES keeps(id) ON DELETE CASCADE
 ) default charset utf8;
 
-
 ALTER TABLE accounts
-MODIFY picture VARCHAR(500)
+MODIFY picture VARCHAR(500);
 
 -- SECTION INDIVIDUAL TABLE DROPS
 DROP TABLE vaultKeeps;
