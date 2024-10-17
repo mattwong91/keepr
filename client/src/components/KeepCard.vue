@@ -27,7 +27,7 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed } from 'vue';
 import { Keep } from "../models/Keep";
 import Pop from "../utils/Pop";
 import { keepsService } from "../services/KeepsService";
