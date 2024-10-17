@@ -38,8 +38,7 @@
 
 
 <script>
-import { AppState } from '../AppState';
-import { computed, reactive, onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import Pop from "../utils/Pop";
 import { vaultsService } from "../services/VaultsService";
 import { useRoute } from "vue-router";
