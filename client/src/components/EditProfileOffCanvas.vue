@@ -6,7 +6,7 @@
     </div>
     <div v-if="profile" class="offcanvas-body text-center">
       <div class="mb-3">
-        <img class="rounded-circle" :src="profile.picture" :alt="profile.name">
+        <img class="rounded-circle img-fluid" :src="profile.picture" :alt="profile.name">
         <p>{{ profile.name }}</p>
       </div>
       <form @submit.prevent="editProfile()" class="text-start">
@@ -65,4 +65,9 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.rounded-circle {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+</style>

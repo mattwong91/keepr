@@ -130,5 +130,6 @@ export default {
 .profile-img {
   height: 10rem;
   width: 10rem;
+  object-fit: cover;
 }
 </style>
