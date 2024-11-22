@@ -147,6 +147,8 @@ export default {
 .profile-img {
   height: 3rem;
   width: 3rem;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 
 .text-block {

@@ -59,4 +59,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.rounded-circle {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+</style>
