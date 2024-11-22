@@ -42,8 +42,8 @@
                 </div>
 
                 <div @click="goToProfile()" class="d-flex align-items-center" type="button">
-                  <img class="rounded-circle profile-img px-1" :src="keep.creator.picture" :alt="keep.creator.name">
-                  <p class="px-1">{{ keep.creator.name }}</p>
+                  <img class="rounded-circle profile-img" :src="keep.creator.picture" :alt="keep.creator.name">
+                  <p class="px-3">{{ keep.creator.name }}</p>
                 </div>
 
               </div>
@@ -107,7 +107,9 @@ p {
 }
 
 .profile-img {
-  height: 5vh;
+  height: 3rem;
+  object-fit: cover;
+  aspect-ratio: 1/1;
 }
 
 .keep-img {
